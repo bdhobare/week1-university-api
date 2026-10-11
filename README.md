@@ -41,10 +41,23 @@ Example with `curl`:
 curl http://127.0.0.1:8000/students/s2
 ```
 
+## Running the tests
+
+The tests in `tests.py` use FastAPI's `TestClient` (which relies on `httpx`) and cover all three endpoints plus the 404 case. `pytest` is not in `requirements.txt`, so install it into the virtualenv first:
+
+```bash
+source .venv/bin/activate
+pip install pytest
+pytest tests.py
+```
+
+Note: `uv run pytest` will fail with `No pyproject.toml found` because this project uses a plain virtualenv and `requirements.txt` rather than a `uv` project file. Use the commands above instead.
+
 ## Project structure
 
 ```
 main.py              # FastAPI app and root endpoint
 routers/students.py  # /students routes and sample data
+tests.py             # pytest tests using FastAPI's TestClient
 requirements.txt     # pinned dependencies
 ```
